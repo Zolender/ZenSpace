@@ -15,6 +15,13 @@ grounded in that material, and remember it with exam-aware spaced review.
   The owner reviews every PR.
 - Work happens on a branch and lands through a PR. PR descriptions say **what changed and why**.
 - Commit messages: clear and imperative. **No co-author or AI attribution trailers.**
+
+## Branches
+- `main`: production. Protected. Changes arrive only through a release PR from `dev`.
+- `dev`: integration. Protected. Feature PRs target `dev`.
+- Feature branches come off `dev`: `feat/<thing>`, `fix/<thing>`, `chore/<thing>`, `docs/<thing>`.
+  Claude sessions may use their own assigned branch name, but PRs still target `dev`.
+- A PR merges only with CI green and the owner's approval. Squash-merge into `dev`, merge-commit `dev` → `main`.
 - Don't start large changes without agreeing the approach first.
 
 ## Code conventions
