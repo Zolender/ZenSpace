@@ -17,6 +17,7 @@ When a decision changes, add a new record that supersedes the old one. Don't rew
 | [0010](0010-hosting.md) | Vercel (web) + Railway (API, worker, Redis) | Accepted |
 | [0011](0011-fsrs-exam-aware.md) | FSRS with exam-aware adjustment | Accepted |
 | [0012](0012-name-carrel.md) | Product name: Carrel | Accepted |
+| [0013](0013-docker-and-environments.md) | Docker usage and environments | Accepted |
 
 ## Template
 

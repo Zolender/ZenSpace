@@ -5,6 +5,9 @@ grounded in that material, and remember it with exam-aware spaced review.
 
 **Status:** pre-scaffold. Only docs exist. Next: user flows, then Milestone 0 (foundation).
 
+**Environments:** preview per PR, staging from `dev`, production from `main`. The owner reviews in a
+browser. Don't assume anything runs on the owner's laptop.
+
 ## Read first
 - `docs/product.md`: what we build and why, scope, roadmap, open questions.
 - `docs/architecture.md`: system shape, repo layout, boundary rules, testing.

@@ -173,14 +173,22 @@ the boundary already exists.
 
 ## 6. Environments and deployment
 
-| Environment | Web | API + worker + Redis | Data |
-|---|---|---|---|
-| Local | `next dev` | `nest start` + Docker Redis | Supabase CLI (Docker) |
-| Preview (per PR) | Vercel preview | Railway PR environment | Supabase branch or staging project |
-| Production | Vercel | Railway | Supabase production |
+| Environment | Deployed from | Web | API + worker + Redis | Data |
+|---|---|---|---|---|
+| Preview | each PR | Vercel preview | uses staging API | staging Supabase |
+| Staging | `dev` | Vercel | Railway (staging) | Supabase project (staging) |
+| Production | `main` | Vercel | Railway (production) | Supabase project (production) |
+| Tests | CI and Claude sessions | — | Testcontainers | throwaway Postgres + Redis |
 
-- Pushes to `main` deploy to production after CI passes. Nothing reaches `main` without review.
+- Development doesn't depend on the owner's laptop. Code is written and tested in Claude
+  sessions and CI, and reviewed through PRs and preview URLs. Local dev (native `pnpm dev`, with
+  Redis in Docker, against the staging Supabase project) stays possible but optional.
+- Staging exists from Milestone 0. Production is added before the beta.
+- Migrations reach staging only when a PR merges into `dev`, so an unmerged migration can't
+  break the shared staging database.
+- `main` deploys to production after CI passes. Nothing reaches `main` without review.
 - Schema changes are migration files in `packages/db`, never dashboard edits.
+- Docker details: [`decisions/0013-docker-and-environments.md`](decisions/0013-docker-and-environments.md).
 - Server components (API, DB, worker, Redis) share **one region**. Static assets come from the CDN.
   EU for now; may change after the data-protection check (product open question #7).
 - Secrets live in platform env vars, never in the repo.
