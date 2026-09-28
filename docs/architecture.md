@@ -30,16 +30,16 @@ building screens, not re-implementing rules.
 
 ## 2. Components
 
-| Component | Tech | Responsibility |
-|---|---|---|
-| Web | Next.js (App Router), TypeScript | UI only. Talks to the API through the generated client. No DB or AI access |
-| API | NestJS | HTTP API, auth checks, business rules, AI calls for interactive features (tutor turns) |
-| Worker | Same NestJS codebase, `worker.ts` entry | Slow jobs: document processing, question extraction, flashcard generation |
-| Database | Supabase Postgres + pgvector | All relational data and slide embeddings |
-| Auth | Supabase Auth (Google + email link) | Issues JWTs; the API verifies them on every request |
-| Files | Supabase Storage, private buckets | PDFs and images, reached only through short-lived signed URLs |
-| Queue | BullMQ on Redis | Job hand-off between API and worker, with retries |
-| AI | Vercel AI SDK behind our own `ai` package | Provider-agnostic calls, versioned prompts |
+| Component | Tech                                      | Responsibility                                                                         |
+| --------- | ----------------------------------------- | -------------------------------------------------------------------------------------- |
+| Web       | Next.js (App Router), TypeScript          | UI only. Talks to the API through the generated client. No DB or AI access             |
+| API       | NestJS                                    | HTTP API, auth checks, business rules, AI calls for interactive features (tutor turns) |
+| Worker    | Same NestJS codebase, `worker.ts` entry   | Slow jobs: document processing, question extraction, flashcard generation              |
+| Database  | Supabase Postgres + pgvector              | All relational data and slide embeddings                                               |
+| Auth      | Supabase Auth (Google + email link)       | Issues JWTs; the API verifies them on every request                                    |
+| Files     | Supabase Storage, private buckets         | PDFs and images, reached only through short-lived signed URLs                          |
+| Queue     | BullMQ on Redis                           | Job hand-off between API and worker, with retries                                      |
+| AI        | Vercel AI SDK behind our own `ai` package | Provider-agnostic calls, versioned prompts                                             |
 
 ## 3. Key flows
 
@@ -173,12 +173,12 @@ the boundary already exists.
 
 ## 6. Environments and deployment
 
-| Environment | Deployed from | Web | API + worker + Redis | Data |
-|---|---|---|---|---|
-| Preview | each PR | Vercel preview | uses staging API | staging Supabase |
-| Staging | `dev` | Vercel | Railway (staging) | Supabase project (staging) |
-| Production | `main` | Vercel | Railway (production) | Supabase project (production) |
-| Tests | CI and Claude sessions | — | Testcontainers | throwaway Postgres + Redis |
+| Environment | Deployed from          | Web            | API + worker + Redis | Data                          |
+| ----------- | ---------------------- | -------------- | -------------------- | ----------------------------- |
+| Preview     | each PR                | Vercel preview | uses staging API     | staging Supabase              |
+| Staging     | `dev`                  | Vercel         | Railway (staging)    | Supabase project (staging)    |
+| Production  | `main`                 | Vercel         | Railway (production) | Supabase project (production) |
+| Tests       | CI and Claude sessions | —              | Testcontainers       | throwaway Postgres + Redis    |
 
 - Development doesn't depend on the owner's laptop. Code is written and tested in Claude
   sessions and CI, and reviewed through PRs and preview URLs. Local dev (native `pnpm dev`, with
@@ -197,15 +197,15 @@ the boundary already exists.
 
 TDD: failing test → code → refactor. Coverage is collected from the first commit and gated per layer.
 
-| Layer | Tooling | Gate |
-|---|---|---|
-| `domain/`, `packages/scheduling` | Vitest unit tests, strict TDD | ≥ 90% |
-| `application/` use cases | Vitest with in-memory fakes | ≥ 80% |
-| `infrastructure/` | Vitest + Testcontainers (real Postgres, Redis) | measured |
-| HTTP endpoints | Supertest, incl. auth and **cross-user access** cases | every endpoint |
-| Web components with logic | Vitest + Testing Library, MSW for the API | measured |
-| User flows | Playwright against web + API, **fake AI provider** | critical flows |
-| AI behaviour | Evals in `packages/ai/evals` | pass rate tracked; nightly / on demand |
+| Layer                            | Tooling                                               | Gate                                   |
+| -------------------------------- | ----------------------------------------------------- | -------------------------------------- |
+| `domain/`, `packages/scheduling` | Vitest unit tests, strict TDD                         | ≥ 90%                                  |
+| `application/` use cases         | Vitest with in-memory fakes                           | ≥ 80%                                  |
+| `infrastructure/`                | Vitest + Testcontainers (real Postgres, Redis)        | measured                               |
+| HTTP endpoints                   | Supertest, incl. auth and **cross-user access** cases | every endpoint                         |
+| Web components with logic        | Vitest + Testing Library, MSW for the API             | measured                               |
+| User flows                       | Playwright against web + API, **fake AI provider**    | critical flows                         |
+| AI behaviour                     | Evals in `packages/ai/evals`                          | pass rate tracked; nightly / on demand |
 
 Real course material (UoK slides, past papers) is **never committed**. Eval fixtures that use
 it live in private storage; the repo holds only material we create.

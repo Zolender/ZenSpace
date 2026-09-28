@@ -2,7 +2,7 @@
 
 > Your quiet place to learn.
 
-Status: pre-build. This document is the source of truth for *what* we build and *why*.
+Status: pre-build. This document is the source of truth for _what_ we build and _why_.
 Technical choices live in [`architecture.md`](architecture.md) and [`decisions/`](decisions/).
 
 ---
@@ -56,18 +56,18 @@ Everything else (daily plan, quick capture, notes) supports this loop.
 
 The tutor has **methods** (what kind of session it is) and **two dials** (how it behaves).
 
-| Method | Purpose | Kind |
-|---|---|---|
-| Explain | Teaches a topic from the student's slides | Learning |
+| Method   | Purpose                                                 | Kind     |
+| -------- | ------------------------------------------------------- | -------- |
+| Explain  | Teaches a topic from the student's slides               | Learning |
 | Socratic | Only asks questions and leads the student to the answer | Learning |
-| Feynman | The student explains; the tutor finds the gaps | Learning |
-| Drill | Rapid recall questions | Revision |
-| Exam sim | Timed, no help, graded at the end | Revision |
+| Feynman  | The student explains; the tutor finds the gaps          | Learning |
+| Drill    | Rapid recall questions                                  | Revision |
+| Exam sim | Timed, no help, graded at the end                       | Revision |
 
-| Dial | Range |
-|---|---|
+| Dial           | Range                                                          |
+| -------------- | -------------------------------------------------------------- |
 | **Strictness** | "Gives answers when asked" → "Never gives answers, hints only" |
-| **Level** | High school → Undergraduate → Master's |
+| **Level**      | High school → Undergraduate → Master's                         |
 
 ### Sessions
 
@@ -93,12 +93,14 @@ exam, spacing returns to normal so the knowledge carries into finals.
 Assumes ~15 hours/week of product-owner time. The code is written with an AI pair and reviewed by the owner.
 
 ### Milestone 0 — Foundation (~1 week)
+
 - Monorepo scaffold, CI with coverage gates and boundary checks.
 - Test setup: unit, integration (real Postgres/Redis), Playwright with a fake AI.
 - Preview and production deploys.
 - One thin flow working end to end: sign in → API → database → screen.
 
 ### Milestone 1 — "Study with my slides" (~weeks 2–4)
+
 - Courses with exam dates. PDF upload, processing, and viewer.
 - Tutor that answers from the slides and cites them (reads slide images too).
 - Methods: Explain and Socratic. Both dials.
@@ -106,25 +108,27 @@ Assumes ~15 hours/week of product-owner time. The code is written with an AI pai
 - **Checkpoint:** 2–3 friendly testers.
 
 ### Milestone 2 — "Pass my exam" (~weeks 5–7)
+
 - Past-paper upload (photos or PDF), question extraction, exam practice with AI grading.
 - Flashcard generation and exam-aware daily review.
 - Streak based on real work.
 - **Checkpoint:** beta with 5–10 UoK students, timed before a monthly exam.
 
 ### Milestone 3 — "My study space" (~weeks 8–9+)
+
 - Notes editor with folders inside courses.
 - Daily plan and morning quick capture.
 - Progress view. Per-user AI usage limits. In-app feedback.
 
 ## 6. Roadmap
 
-| Phase | When (approx.) | What |
-|---|---|---|
-| **V1 — Study loop** | Months 1–2 | Milestones 0–3 above |
-| **2 — Sustainable** | Months 3–4 | MoMo / Airtel Money payments, subscription tiers and credits, rewards that earn credits, AI note improver (accept/reject changes), achievements, **mobile companion** (review + capture) |
-| **3 — Personal coach** | Months 4–6 | Goals set with the AI, "today" suggestions (AI proposes, student decides), weak-topic insights, remaining tutor methods |
-| **4 — Class layer** | Months 6–9 | Shared course spaces, lecturer view (publish material, anonymous class weak spots, quizzes) |
-| **5 — Widen** | Months 9–12+ | Other Rwandan universities, high school, French and Kinyarwanda, native mobile app. Professionals: parked |
+| Phase                  | When (approx.) | What                                                                                                                                                                                     |
+| ---------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **V1 — Study loop**    | Months 1–2     | Milestones 0–3 above                                                                                                                                                                     |
+| **2 — Sustainable**    | Months 3–4     | MoMo / Airtel Money payments, subscription tiers and credits, rewards that earn credits, AI note improver (accept/reject changes), achievements, **mobile companion** (review + capture) |
+| **3 — Personal coach** | Months 4–6     | Goals set with the AI, "today" suggestions (AI proposes, student decides), weak-topic insights, remaining tutor methods                                                                  |
+| **4 — Class layer**    | Months 6–9     | Shared course spaces, lecturer view (publish material, anonymous class weak spots, quizzes)                                                                                              |
+| **5 — Widen**          | Months 9–12+   | Other Rwandan universities, high school, French and Kinyarwanda, native mobile app. Professionals: parked                                                                                |
 
 ## 7. Out of scope for V1
 
@@ -135,7 +139,7 @@ Written down so we can say no quickly.
 - Lecturer accounts, shared courses, sharing past papers between students.
 - AI-generated study plans and goals.
 - Languages other than English.
-- Scanned or handwritten *slides* (past-paper photos are supported).
+- Scanned or handwritten _slides_ (past-paper photos are supported).
 - Offline mode.
 - Anything for professionals.
 
@@ -148,15 +152,15 @@ Written down so we can say no quickly.
 
 ## 9. Open questions
 
-| # | Question | Decide by |
-|---|---|---|
-| 1 | Which AI provider(s)? | Bake-off, before building the tutor |
-| 2 | Folder-first or course-first organisation for notes? | User flows discussion |
-| 3 | Pricing and free vs. paid split | End of beta, from real usage costs |
-| 4 | How rewards convert to credits without being gamed | Phase 2 |
-| 5 | Past-paper sharing: copyright and academic integrity | Before Phase 4 |
-| 6 | Will UoK lecturers welcome or resist this? | Talk to 2–3 lecturers during beta |
-| 7 | Rwanda data protection law (2021): registration, storing data abroad | **Early**, since it may affect hosting region |
-| 8 | Campus connectivity: do we need offline support? | Ask beta testers |
-| 9 | "Carrel": domains, app stores, trademark | Before public launch |
-| 10 | Does a professionals mode ever belong here? | Parked until after Phase 3 |
+| #   | Question                                                             | Decide by                                     |
+| --- | -------------------------------------------------------------------- | --------------------------------------------- |
+| 1   | Which AI provider(s)?                                                | Bake-off, before building the tutor           |
+| 2   | Folder-first or course-first organisation for notes?                 | User flows discussion                         |
+| 3   | Pricing and free vs. paid split                                      | End of beta, from real usage costs            |
+| 4   | How rewards convert to credits without being gamed                   | Phase 2                                       |
+| 5   | Past-paper sharing: copyright and academic integrity                 | Before Phase 4                                |
+| 6   | Will UoK lecturers welcome or resist this?                           | Talk to 2–3 lecturers during beta             |
+| 7   | Rwanda data protection law (2021): registration, storing data abroad | **Early**, since it may affect hosting region |
+| 8   | Campus connectivity: do we need offline support?                     | Ask beta testers                              |
+| 9   | "Carrel": domains, app stores, trademark                             | Before public launch                          |
+| 10  | Does a professionals mode ever belong here?                          | Parked until after Phase 3                    |
