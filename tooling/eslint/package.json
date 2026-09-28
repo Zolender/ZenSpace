@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     "./base": "./base.js",
+    "./node": "./node.js",
     "./nest": "./nest.js",
     "./next": "./next.js"
   },

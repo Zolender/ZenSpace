@@ -1,10 +1,8 @@
-import globals from 'globals';
-import base from './base.js';
+import node from './node.js';
 
 export default [
-  ...base,
+  ...node,
   {
-    languageOptions: { globals: globals.node },
     rules: {
       // Nest modules are classes with decorators and no members.
       '@typescript-eslint/no-extraneous-class': 'off',

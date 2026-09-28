@@ -1,0 +1,29 @@
+{
+  "name": "@carrel/testing",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@testcontainers/postgresql": "12.1.0",
+    "@testcontainers/redis": "12.1.0"
+  },
+  "devDependencies": {
+    "@carrel/eslint-config": "workspace:*",
+    "@carrel/tsconfig": "workspace:*",
+    "@carrel/vitest-config": "workspace:*",
+    "@types/node": "24.19.0",
+    "eslint": "10.11.0",
+    "ioredis": "6.0.0",
+    "postgres": "3.4.9",
+    "typescript": "6.0.3",
+    "vitest": "5.0.2"
+  }
+}

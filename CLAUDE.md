@@ -21,7 +21,17 @@ Run from the repo root. Node 24 LTS and pnpm 10 (pinned in `package.json`).
 - `pnpm install`
 - `pnpm build` / `pnpm dev` / `pnpm lint` / `pnpm typecheck` (via Turborepo)
 - `pnpm format` / `pnpm format:check` (Prettier)
+- `pnpm test`: Vitest with coverage in every package. Integration tests need Docker.
+- `pnpm boundaries`: architecture rules (`.dependency-cruiser.cjs`)
 - One package: `pnpm --filter @carrel/api <script>`
+
+## Tests
+
+- Unit tests sit next to the code as `*.test.ts(x)`.
+- API integration tests live in `apps/api/test/` as `*.int.test.ts`. They use real Postgres and
+  Redis from `@carrel/testing` (`startPostgres()`, `startRedis()`), never mocks of them.
+- Coverage gates (decision 0009) live in `tooling/vitest`. Don't lower them to get green.
+- When adding a boundary rule, prove it fires with a throwaway violation before committing.
 
 ## Tooling notes
 
@@ -30,6 +40,8 @@ Run from the repo root. Node 24 LTS and pnpm 10 (pinned in `package.json`).
   other tools when unsure.
 - TypeScript is pinned to 6.0.x until `typescript-eslint` supports TypeScript 7.
 - NestJS 12 is ESM-only. `apps/api` is `"type": "module"`, and relative imports use `.js` extensions.
+- API tests compile through SWC (`unplugin-swc`): Nest's dependency injection needs decorator
+  metadata, which Vitest's default compiler doesn't emit.
 
 ## Working agreement
 
