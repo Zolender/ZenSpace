@@ -18,6 +18,8 @@ When a decision changes, add a new record that supersedes the old one. Don't rew
 | [0011](0011-fsrs-exam-aware.md) | FSRS with exam-aware adjustment | Accepted |
 | [0012](0012-name-carrel.md) | Product name: Carrel | Accepted |
 | [0013](0013-docker-and-environments.md) | Docker usage and environments | Accepted |
+| [0014](0014-api-and-data-conventions.md) | API and data conventions | Accepted |
+| [0015](0015-domains-and-auth.md) | Domains and authentication flow | Accepted |
 
 ## Template
 
