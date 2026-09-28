@@ -4,12 +4,14 @@
 - Date: 2026-09-25
 
 ## Context
+
 The owner's laptop is busy with other work and shouldn't be required to run the stack.
 The API and worker need a portable production image. Integration tests need real Postgres and Redis.
 
 ## Decision
 
 **Environments**
+
 - **Preview** per PR (web on Vercel, pointing at the staging API).
 - **Staging**, auto-deployed from `dev`, built in Milestone 0.
 - **Production**, deployed from `main`, added before the beta.
@@ -18,6 +20,7 @@ The API and worker need a portable production image. Integration tests need real
   GitHub Codespaces is the option for hands-on coding without local setup.
 
 **Docker**
+
 - In dev, app code runs natively. Only dependencies (Redis) run in Docker, and even that is optional.
 - Tests use Testcontainers for throwaway Postgres and Redis, in CI and in Claude sessions.
 - **One image for API and worker**, started with different commands (`main.js`, `worker.js`).
@@ -31,12 +34,14 @@ The API and worker need a portable production image. Integration tests need real
 - The web app is not containerised. Vercel builds it natively.
 
 ## Alternatives
+
 - **Fully containerised local dev:** slow file watching and heavy on the laptop, for no gain at our size.
 - **Local Supabase stack:** about a dozen containers. Too heavy for a busy laptop.
 - **Self-managed VPS (e.g. with Coolify):** cheaper at scale, but we'd own patching, backups,
   and security. Docker keeps this option open.
 
 ## Consequences
+
 - The owner needs only a browser and GitHub to work on the project day to day.
 - Staging is shared, so migrations are applied only on merge to `dev`.
 - Claude sessions need network access to container registries (Docker Hub) for Testcontainers.
